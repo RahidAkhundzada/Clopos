@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View, FlatList, Image} from 'react-native';
+import {StyleSheet, Text, View, FlatList, Image,SafeAreaView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Header from '../src/components/Header';
 
@@ -11,7 +11,7 @@ const Selected = ({route}) => {
     'https://scontent.fgyd3-1.fna.fbcdn.net/v/t1.0-9/s960x960/87988649_888585111574502_2596708068628627456_o.jpg?_nc_cat=102&_nc_sid=dd9801&_nc_ohc=lzRegWoOAdcAX-ImGWM&_nc_ht=scontent.fgyd3-1.fna&_nc_tp=7&oh=534af8624073f741354af7d9f29b1aba&oe=5EE51789';
 
   return (
-    <View>
+    <SafeAreaView>
       <Header title={data.name} navigation={navigation} />
       <FlatList
         data={data.dishes}
@@ -46,7 +46,7 @@ const Selected = ({route}) => {
           </View>
         )}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
