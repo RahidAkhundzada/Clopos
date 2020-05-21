@@ -1,7 +1,18 @@
 import React from 'react';
-import {StyleSheet, Text, View, FlatList, Image,SafeAreaView} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  Image,
+  SafeAreaView,
+  Dimensions,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Header from '../src/components/Header';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 const Selected = ({route}) => {
   const navigation = useNavigation();
@@ -17,7 +28,7 @@ const Selected = ({route}) => {
         data={data.dishes}
         renderItem={({item}) => (
           <View style={{margin: 10, flexDirection: 'row'}}>
-            <View>
+            <View style={{flex: 1}}>
               <Image
                 source={{
                   uri:
@@ -25,26 +36,29 @@ const Selected = ({route}) => {
                       ? 'https://menu.galaxylounge.az' + item.image
                       : galaxy,
                 }}
-                style={{height: 200, width: 200}}
+                style={{height: windowWidth * 0.4, width: windowWidth * 0.4}}
               />
             </View>
+
             <View
               style={{
                 margin: 5,
-                justifyContent: 'center',
-                alignItems: 'center',
+
+                flex: 1,
               }}>
               <Text
-                style={{fontSize: 25, color: 'tomato', margin: 5}}
+                style={{fontSize: windowWidth / 15, color: 'tomato', margin: 5}}
                 numberOfLines={3}>
                 {item.name}
               </Text>
-              <Text style={{fontSize: 20, color: 'black', margin: 5}}>
+              <Text
+                style={{fontSize: windowWidth / 15, color: 'black', margin: 5}}>
                 {item.price}
               </Text>
             </View>
           </View>
         )}
+        keyExtractor={(item, index) => index.toString()}
       />
     </SafeAreaView>
   );

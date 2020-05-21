@@ -37,11 +37,17 @@ const Menu = props => {
         renderItem={({item}) => (
           <View style={{flexDirection: 'row', margin: 20}}>
             <TouchableOpacity
-            style={{justifyContent:'center',alignItems:'center'}}
-              onPress={() =>
-                navigation.navigate('Selected', {data: item})
-              }>
-              <Text style={{fontSize:20,fontWeight:'bold',color :'red',margin:3}}>{item.name}</Text>
+              style={{justifyContent: 'center', alignItems: 'center'}}
+              onPress={() => navigation.navigate('Selected', {data: item})}>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  color: 'red',
+                  margin: 3,
+                }}>
+                {item.name}
+              </Text>
               <Image
                 source={imageView(item.image)}
                 style={{height: Wwidth * 0.4, width: Wwidth * 0.4}}
@@ -49,6 +55,8 @@ const Menu = props => {
             </TouchableOpacity>
           </View>
         )}
+        keyExtractor={item => item.id}
+
       />
     </View>
   );

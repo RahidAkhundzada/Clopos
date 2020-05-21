@@ -24,8 +24,8 @@ const HomeButton = ({img, ModalAction, DataAction, navigation, key}) => {
     }
   };
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress} key={key}>
-      <Image source={img} />
+    <TouchableOpacity style={styles.container} onPress={onPress}>
+      <Image source={img} style={styles.imageStyle} />
     </TouchableOpacity>
   );
 };
@@ -49,8 +49,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   imageStyle: {
-    height: windowHeight / 8,
-    width: windowWidth / 4,
+    resizeMode: 'contain',
+    height:windowWidth/3.5,
+    width:windowWidth/3.5
   },
 });
 

@@ -15,11 +15,11 @@ const Home = props => {
     [
       require('../src/Image/menu.png'),
       require('../src/Image/Lunch.png'),
-      require('../src/Image/info.png'),
+      require('../src/Image/food.png'),
     ],
     [
-      require('../src/Image/menu.png'),
-      require('../src/Image/info.png'),
+      require('../src/Image/wishlist.png'),
+      require('../src/Image/admin.png'),
       require('../src/Image/info.png'),
     ],
   ];
@@ -30,7 +30,11 @@ const Home = props => {
     let row = [];
     for (let j = 0; j < 3; j++) {
       row.push(
-        <HomeButton img={pic[i][j]} navigation={navigation} key={i + j} />,
+        <HomeButton
+          img={pic[i][j]}
+          navigation={navigation}
+          key={i * j + i + j}
+        />,
       );
     }
     rows.push(<View style={styles.row}>{row}</View>);
@@ -39,7 +43,7 @@ const Home = props => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.titleStyle}>
-        <Header title='Galaxy Lounge' isHome={true} />
+        <Header title="Galaxy Lounge" isHome={true} />
       </View>
 
       <View style={styles.imageStyle}>
@@ -69,7 +73,7 @@ const styles = StyleSheet.create({
   },
   ButtonStyle: {
     flex: 7,
-    marginTop:20,
+    marginTop: 20,
   },
   row: {
     flexDirection: 'row',
