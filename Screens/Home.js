@@ -4,12 +4,23 @@ import {useNavigation} from '@react-navigation/native';
 import Header from '../src/components/Header';
 import HomeButton from '../src/components/HomeButton';
 import ModalView from '../src/components/ModalView';
-
+import ModalLogin from '../src/components/ModalLogin';
+import ModalWish from '../src/components/ModalWish';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 const Home = props => {
   const navigation = useNavigation();
+
+  const Modals = () => {
+    return (
+      <View>
+        <ModalView />
+        <ModalLogin />
+        <ModalWish />
+      </View>
+    );
+  };
 
   const pic = [
     [
@@ -54,7 +65,7 @@ const Home = props => {
       </View>
 
       <View style={styles.ButtonStyle}>{rows}</View>
-      <ModalView />
+      <Modals />
     </SafeAreaView>
   );
 };

@@ -6,45 +6,50 @@ import {
   Text,
   TouchableHighlight,
   View,
-  Linking,
   Image,
+  TextInput,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
-import {ModalAction} from '../../Redux/Action/ModalAction';
+import {ModalAction1} from '../../Redux/Action/ModalAction';
 import {connect} from 'react-redux';
 import {PHeight, PWidth} from './const';
 
-const ModalView = props => {
+const ModalLogin = props => {
   const onPress = () => {
-    props.ModalAction(false);
+    props.ModalAction1(false);
   };
   return (
     <View style={styles.centeredView}>
       <Modal
-        animationType="slide"
+        animationType="fade"
         transparent={true}
         visible={props.Modal}
-        onRequestClose={() => {
-          Alert.alert('Modal has been closed.');
-        }}>
+        overFullScreen="fullScreen">
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={[{...styles.modalText, fontSize: 30}]}>Clopos</Text>
-            <Image
-              source={require('../Image/Clopos.png')}
-              style={{height: PWidth * 0.5, width: PWidth * 0.5}}
-            />
-            <Text
-              style={styles.modalText}
-              onPress={() => Linking.openURL('http://www.Clopos.com')}>
-              Go to Clopos.com
-            </Text>
-            <Text
-              style={styles.modalText}
-              onPress={() => {
-                Linking.openURL('tel:+994705301040');
-              }}>
-              Call we +994 50 530 10 40
-            </Text>
+            <Text style={styles.modalText}>Welcome Chef</Text>
+            <Image source={require('../Image/chef.png')} />
+            <KeyboardAvoidingView
+              behavior={Platform.OS == 'ios' ? 'padding' : 'height'}>
+              <TextInput style={styles.Input1} placeholder="Chef Name" />
+
+              <TextInput
+                style={styles.Input2}
+                placeholder="Password"
+                secureTextEntry
+              />
+            </KeyboardAvoidingView>
+            <View style={styles.Login}>
+              <TouchableOpacity style={styles.Login1}>
+                <Text>Login</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.Login1}>
+                <Text>Forget Password</Text>
+              </TouchableOpacity>
+            </View>
+
             <TouchableHighlight
               style={{...styles.openButton1, backgroundColor: '#2196F3'}}
               onPress={() => onPress()}>
@@ -59,14 +64,14 @@ const ModalView = props => {
 
 const mapStateToProps = state => {
   return {
-    Modal: state.Modal.info,
+    Modal: state.Modal.admin,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    ModalAction: value => {
-      dispatch(ModalAction(value));
+    ModalAction1: value => {
+      dispatch(ModalAction1(value));
     },
   };
 };
@@ -112,14 +117,31 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   modalText: {
-    marginTop: 15,
     marginBottom: 15,
     textAlign: 'center',
     color: 'blue',
+  },
+  Input1: {
+    borderBottomWidth: 0.2,
+    width: '70%',
+  },
+  Input2: {
+    borderBottomWidth: 0.2,
+    width: '70%',
+  },
+  Login: {
+    flexDirection: 'row',
+  },
+  Login1: {
+    backgroundColor: '#F194FF',
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+    margin: 5,
   },
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ModalView);
+)(ModalLogin);

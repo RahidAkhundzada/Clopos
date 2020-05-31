@@ -9,14 +9,31 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import {DataAction} from '../../Redux/Action/DataAction';
-import {ModalAction} from '../../Redux/Action/ModalAction';
+import {
+  ModalAction,
+  ModalAction1,
+  ModalAction2,
+} from '../../Redux/Action/ModalAction';
+
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const HomeButton = ({img, ModalAction, DataAction, navigation, key}) => {
+const HomeButton = ({
+  img,
+  ModalAction,
+  ModalAction1,
+  ModalAction2,
+  DataAction,
+  navigation,
+  key,
+}) => {
   const onPress = () => {
     if (img === require('../Image/info.png')) {
       ModalAction(true);
+    } else if (img === require('../Image/admin.png')) {
+      ModalAction1(true);
+    } else if (img === require('../Image/wishlist.png')) {
+      ModalAction2(true);
     } else if (img === require('../Image/menu.png')) {
       setTimeout(() => {
         navigation.navigate('Galaxy E-menu');
@@ -35,6 +52,12 @@ const mapDispatchToProps = dispatch => {
     ModalAction: value => {
       dispatch(ModalAction(value));
     },
+    ModalAction1: value => {
+      dispatch(ModalAction1(value));
+    },
+    ModalAction2: value => {
+      dispatch(ModalAction2(value));
+    },
     DataAction: value => {
       dispatch(DataAction(value));
     },
@@ -50,8 +73,8 @@ const styles = StyleSheet.create({
   },
   imageStyle: {
     resizeMode: 'contain',
-    height:windowWidth/3.5,
-    width:windowWidth/3.5
+    height: windowWidth / 3.5,
+    width: windowWidth / 3.5,
   },
 });
 
